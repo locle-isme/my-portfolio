@@ -231,8 +231,8 @@ export default {
           title: 'My portfolio',
           image: 'https://i.imgur.com/41CEkKt.png',
           shortDescription: 'Use knowledge I have learned to make a website introduce myself .\nPlease read file README.md into source code to known detail this project!',
-          source: 'https://github.com/locle-isme/crawl-sticker',
-          demo: 'https://github.com/locle-isme/crawl-sticker',
+          source: 'https://github.com/locle-isme/my-portfolio',
+          demo: 'https://flamboyant-northcutt-497073.netlify.app/',
           details: [
             {
               label: 'role',
