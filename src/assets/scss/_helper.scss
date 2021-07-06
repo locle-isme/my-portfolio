@@ -1,0 +1,29 @@
+@function str-replace($string, $search, $replace: "") {
+  $index: str-index($string, $search);
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+  @return $string;
+}
+
+
+$sides: top, right, bottom, left;
+$sizes: "0.5", "0.55", "0.75", "0.85", "0.95", "1", "1.25", "1.5", "1.75", "2", "2.25", "2.5", "2.75", "3", "3.25", "3.5", "3.75";
+
+@each $size in $sizes {
+  @each $side in $sides {
+    .m-#{str_slice($side, 0, 1)}-#{str-replace($size,".","")} {
+      margin-#{$side}: #{$size}rem;
+    }
+    .p-#{str_slice($side, 0, 1)}-#{str-replace($size,".","")} {
+      padding-#{$side}: #{$size}rem;
+    }
+  }
+}
+
+:root {
+  @each $size in $sizes {
+    --m-#{str-replace($size,".","")}: #{$size}rem;
+    --p-#{str-replace($size,".","")}: #{$size}rem;
+  }
+}

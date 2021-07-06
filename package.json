@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "lodash": "^4.17.21",
+    "scrollreveal": "^4.0.9",
     "vue": "^3.0.0"
   },
   "devDependencies": {
@@ -18,7 +20,9 @@
     "@vue/compiler-sfc": "^3.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0"
+    "eslint-plugin-vue": "^7.0.0",
+    "sass": "^1.35.1",
+    "sass-loader": "10"
   },
   "eslintConfig": {
     "root": true,

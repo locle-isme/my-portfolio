@@ -1,0 +1,28 @@
+$breakpoints: ("sm": "576px", "md": "720px", "lg": "960px", "xl": "1140px");
+$sm: 576px;
+$md: 720px;
+$lg: 960px;
+$xl: 1140px;
+@mixin sm {
+  @media screen and (max-width: #{$sm}) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media screen and (max-width: #{$md}) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media screen and (max-width: #{$lg}) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media screen and (max-width: #{$xl}) {
+    @content;
+  }
+}
