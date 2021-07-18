@@ -74,6 +74,72 @@
   ],
   "projects": [
     {
+      "title": "Calculator GPA",
+      "image": "https://i.imgur.com/k1alKtH.png",
+      "shortDescription": "This project help you predict your GPA in semester or GPA graduated .\nPlease read file README.md into source code to known detail this project!",
+      "source": "https://github.com/locle-isme/calculator-GPA-UT",
+      "demo": "https://calculator-gpa-ut.netlify.app",
+      "details": [
+        {
+          "label": "role",
+          "value": "Fullstack Developer"
+        },
+        {
+          "label": "Technology",
+          "value": "VueJS, Boostrap 5.0, Bootstrap Icon, Axios, Javascript (Backend)."
+        },
+        {
+          "label": "Time start",
+          "value": "07/2021"
+        },
+        {
+          "label": "Time end",
+          "value": "07/2021"
+        },
+        {
+          "label": "Members",
+          "value": 1
+        },
+        {
+          "label": "description",
+          "value": "This project help you predict your GPA in semester or GPA graduated."
+        }
+      ]
+    },
+    {
+      "title": "My portfolio",
+      "image": "https://i.imgur.com/41CEkKt.png",
+      "shortDescription": "Use knowledge I have learned to make a website introduce myself .\nPlease read file README.md into source code to known detail this project!",
+      "source": "https://github.com/locle-isme/my-portfolio",
+      "demo": "https://locle-portfolio.netlify.app",
+      "details": [
+        {
+          "label": "role",
+          "value": "Developer"
+        },
+        {
+          "label": "Technology",
+          "value": "VueJS, SCSS, ScrollReveal, Font Awesome."
+        },
+        {
+          "label": "Time start",
+          "value": "06/29/2021"
+        },
+        {
+          "label": "Time end",
+          "value": "07/06/2021"
+        },
+        {
+          "label": "Members",
+          "value": 1
+        },
+        {
+          "label": "description",
+          "value": "Use knowledge I have learned to make a website introduce myself"
+        }
+      ]
+    },
+    {
       "title": "Graduation essay: Marketplace integrate collaborative filtering",
       "image": "https://i.imgur.com/Nluk0ZP.png",
       "shortDescription": "E-commerce website integrates smart features - product recommendations for users.\nPlease read file README.md into source code to known detail this project!",
@@ -169,39 +235,6 @@
         {
           "label": "description",
           "value": "Using SimpleHtmlDom191 to crawl stickers form line.me & tlgrm.eu. I just make it in free time of last year"
-        }
-      ]
-    },
-    {
-      "title": "My portfolio",
-      "image": "https://i.imgur.com/41CEkKt.png",
-      "shortDescription": "Use knowledge I have learned to make a website introduce myself .\nPlease read file README.md into source code to known detail this project!",
-      "source": "https://github.com/locle-isme/my-portfolio",
-      "demo": "https://flamboyant-northcutt-497073.netlify.app/",
-      "details": [
-        {
-          "label": "role",
-          "value": "Developer"
-        },
-        {
-          "label": "Technology",
-          "value": "VueJS, SCSS, ScrollReveal, Font Awesome."
-        },
-        {
-          "label": "Time start",
-          "value": "06/29/2021"
-        },
-        {
-          "label": "Time end",
-          "value": "07/06/2021"
-        },
-        {
-          "label": "Members",
-          "value": 1
-        },
-        {
-          "label": "description",
-          "value": "Use knowledge I have learned to make a website introduce myself"
         }
       ]
     }
