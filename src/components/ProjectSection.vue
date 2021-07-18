@@ -358,7 +358,7 @@ $width-image: 230px;
             padding: 4px 10px;
             transition: 300ms;
             color: #fff;
-            background: #000;
+            background: $dark-colour;
           }
 
           .btn-detail:hover {

@@ -36,7 +36,7 @@ export default {
   methods: {
     downloadCV() {
       const url = "/assets/cv/CV_LocLe.pdf";
-      const fileName = "CV-LocLe.pdf";
+      const fileName = "CV_LocLe.pdf";
       const element = document.createElement('a');
       element.setAttribute('href', url);
       element.setAttribute('download', fileName);

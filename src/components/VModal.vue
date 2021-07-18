@@ -32,7 +32,7 @@ $width-image: 300px;
   left: 0;
   right: 0;
   bottom: 0;
-  background: #000;
+  background: $dark-colour;
   color: #fff;
   z-index: $z-modal;
   overflow: auto;
@@ -62,11 +62,32 @@ $width-image: 300px;
     display: flex;
     width: 100%;
     height: auto;
-
+    padding-bottom: 50px;
     @include lg() {
       flex-direction: column-reverse;
     }
   }
+
+
+  &::-webkit-scrollbar-track
+  {
+    border: 1px solid black;
+    background-color: #F5F5F5;
+  }
+
+  &::-webkit-scrollbar
+  {
+    width: 10px;
+    background-color: #F5F5F5;
+  }
+
+  &::-webkit-scrollbar-thumb
+  {
+    background-color: #000000;
+  }
+
+
+
 
 }
 

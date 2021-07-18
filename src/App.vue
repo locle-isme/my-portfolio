@@ -24,6 +24,7 @@ import VFooter from "./components/VFooter";
 import IntroLoading from "./components/IntroLoading";
 import ScrollReveal from "scrollreveal";
 import json from "./data.json"
+
 export default {
   data() {
     return json
@@ -91,7 +92,7 @@ export default {
 
   mounted() {
     const {title} = this;
-    document.title =  title;
+    document.title = title;
     this.loadIntro()
         .then(() => {
           this.reveal();
@@ -112,4 +113,11 @@ export default {
 </script>
 
 <style lang="scss">
+#app{
+  transition: 300ms;
+  &.dark-mode {
+    background: $dark-colour;
+    color: $five-colour;
+  }
+}
 </style>

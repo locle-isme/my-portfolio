@@ -275,7 +275,7 @@ $max-width-gallery: 968px;
 
       .slide-image-container {
         position: absolute;
-        bottom: -125px;
+        bottom: -5rem;
         width: 100%;
         overflow: hidden;
 

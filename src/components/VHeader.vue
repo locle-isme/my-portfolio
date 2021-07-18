@@ -2,7 +2,7 @@
 
   <header class="header" ref="header">
     <nav class="nav">
-      <a href="#" class="nav__logo">#locle > isme</a>
+      <a href="#" class="nav__logo" @click.prevent="$emit('scrollMeTo','intro')">#locle > isme</a>
       <div class="nav__menu">
         <ul class="nav__list">
           <li class="nav__item">
@@ -35,8 +35,7 @@
           </li>
         </ul>
       </div>
-      <div class="nav__change-button">
-        <i class="fa fa-moon-o"></i>
+      <div ref="changeModeBtn" class="nav__change-button" @click="changeMode()" v-html="iconMode">
       </div>
     </nav>
   </header>
@@ -45,10 +44,28 @@
 <script>
 export default {
   emits: ['scrollMeTo'],
+  data() {
+    return {
+      mode: 'light',
+    }
+  },
   mounted() {
     document.addEventListener('scroll', this.scrollNav);
+
+    const changeModeBtn = this.$refs.changeModeBtn;
+    const app = document.getElementById('app');
+    changeModeBtn.addEventListener('click', () => {
+      const {mode} = this;
+      if (mode === 'dark') app.classList.add('dark-mode');
+      else app.classList.remove('dark-mode');
+    })
+
   },
   methods: {
+    changeMode() {
+      this.mode = this.mode === 'light' ? 'dark' : 'light';
+    },
+
     scrollNav() {
       const element = this.$refs.header;
       document.addEventListener('scroll', function () {
@@ -60,6 +77,15 @@ export default {
         }
       });
     },
+
+
+  },
+
+  computed: {
+    iconMode() {
+      const {mode} = this;
+      return mode === 'light' ? '<i class="fa fa-moon-o"></i>' : '<i class="fa fa-sun-o"></i>';
+    }
   }
 }
 </script>
@@ -107,6 +133,22 @@ export default {
       }
     }
 
+    .nav__change-button {
+      text-align: right;
+      min-width: 25px;
+      cursor: pointer;
+    }
+  }
+}
+
+.dark-mode {
+  .header {
+    color: $five-colour;
+    background: $dark-colour;
+
+    a{
+      color: $five-colour;
+    }
   }
 }
 </style>
