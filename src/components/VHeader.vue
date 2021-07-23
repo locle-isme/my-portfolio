@@ -120,6 +120,13 @@ export default {
       display: none;
     }
 
+    .nav__logo {
+      color: $dark-colour;
+      &:hover {
+        color: #000;
+      }
+    }
+
     .nav__menu {
       margin-left: auto;
 
@@ -146,7 +153,11 @@ export default {
     color: $five-colour;
     background: $dark-colour;
 
-    a{
+    .nav__logo{
+      color: $five-colour;
+
+    }
+    a {
       color: $five-colour;
     }
   }
