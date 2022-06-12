@@ -88,11 +88,11 @@ section:not(:nth-child(1)) {
 
 
 .btn-secondary {
-  color: $github-coulour;
+  color: $dark-colour !important;
   background-color: rgba(250, 255, 193, 0.96);
   &:hover {
-    color: #fff;
-    background-color: $github-coulour;
+    color: #fff !important;
+    background-color: $github-coulour !important;
   }
 }
 

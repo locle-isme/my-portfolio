@@ -53,8 +53,8 @@ export default defineComponent({
   },
   mounted() {
     document.addEventListener('scroll', this.scrollNav);
-    const changeModeBtn = this.$refs.changeModeBtn;
-    const app = document.getElementById('app');
+    const changeModeBtn = this.$refs.changeModeBtn as HTMLElement;
+    const app = document.getElementById('app') as HTMLElement;
     changeModeBtn.addEventListener('click', () => {
       const {mode} = this;
       if (mode === 'dark') {
@@ -70,7 +70,7 @@ export default defineComponent({
     },
 
     scrollNav(): void {
-      const element = this.$refs.header;
+      const element = this.$refs.header as HTMLElement;
       document.addEventListener('scroll', function () {
         let lastKnownScrollPosition = window.scrollY;
         if (lastKnownScrollPosition > 80) {

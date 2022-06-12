@@ -277,14 +277,13 @@ $width-image: 230px;
           .btn-detail {
             padding: 4px 10px;
             transition: 300ms;
-            color: #fff;
-            background: $dark-colour;
+            color: #fff !important;
+            background: $dark-colour !important;
           }
 
           .btn-detail:hover {
-            background: #fff;
-            //color: #e8aeb1;
-            color: #000;
+            background: #fff !important;
+            color: $dark-colour !important;
           }
         }
       }

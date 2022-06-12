@@ -132,7 +132,7 @@ export default defineComponent({
         display: flex;
         align-items: center;
         a{
-          color: #000000;
+          color: $dark-colour;
         }
       }
 

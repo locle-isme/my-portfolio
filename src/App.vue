@@ -131,7 +131,7 @@ export default defineComponent({
     background: $dark-colour;
     color: $five-colour !important;
     a{
-      color: $five-colour !important;
+      color: $five-colour;
     }
   }
 }

@@ -92,7 +92,7 @@ export default defineComponent({
     font-size: 0.6em;
     animation: spinAnimate 3s ease-in infinite;
     border-radius: 50%;
-    box-shadow: rgba(0, 0, 0, 0.02) 0px 5px 5px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 5px 5px;
     pointer-events: none;
 
     span {
