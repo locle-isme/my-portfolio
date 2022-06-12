@@ -71,10 +71,10 @@ export default defineComponent({
 
     boxDescriptionPosition(): object {
       let styleAdditional = {
-        paddingTop: "0"
+        marginTop: "0"
       }
       if (this.meSelfStyle === 2) {
-        styleAdditional.paddingTop = "112px";
+        styleAdditional.marginTop = "112px";
       }
       return styleAdditional;
     },
@@ -127,7 +127,6 @@ export default defineComponent({
     .me__box {
       display: block;
       transform: translateX(220px);
-
       .inline-box {
         display: flex;
         align-items: center;
