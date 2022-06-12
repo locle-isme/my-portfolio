@@ -41,21 +41,22 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ```
 
+### Configuration setting from path:
+
+```bash
+.
+├── src
+│   ├── config.json
+
+```
+
 ### Configuration portfolio information from path:
 
 ```bash
 .
 ├── src
-│   ├── data.json
+│   ├── information.json
 
-```
-
-To change duration time intro, change this line:
-
-```json
-{
-  "timeIntro": "your time"
-}
 ```
 
 To change your title site, change this line:
