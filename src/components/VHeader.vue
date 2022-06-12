@@ -6,30 +6,30 @@
       <div class="nav__menu">
         <ul class="nav__list">
           <li class="nav__item">
-            <a href="" class="nav__link" @click.prevent="$emit('scrollMeTo','intro')">
+            <a href="#" class="nav__link" @click.prevent="$emit('scrollMeTo','intro')">
               Home
             </a>
           </li>
           <li class="nav__item">
-            <a href="" class="nav__link" @click.prevent="$emit('scrollMeTo','intro')">
+            <a href="#" class="nav__link" @click.prevent="$emit('scrollMeTo','intro')">
               About
             </a>
           </li>
           <li class="nav__item">
-            <a href="" class="nav__link" @click.prevent="$emit('scrollMeTo','skills')">
+            <a href="#" class="nav__link" @click.prevent="$emit('scrollMeTo','skills')">
               Skills
             </a></li>
           <li class="nav__item">
-            <a href="" class="nav__link" @click.prevent="$emit('scrollMeTo','timeline')">
+            <a href="#" class="nav__link" @click.prevent="$emit('scrollMeTo','timeline')">
               Timeline
             </a></li>
           <li class="nav__item">
-            <a href="" class="nav__link" @click.prevent="$emit('scrollMeTo','projects')">
+            <a href="#" class="nav__link" @click.prevent="$emit('scrollMeTo','projects')">
               Projects
             </a>
           </li>
           <li class="nav__item">
-            <a href="" class="nav__link" @click.prevent="$emit('scrollMeTo','gallery')">
+            <a href="#" class="nav__link" @click.prevent="$emit('scrollMeTo','gallery')">
               Gallery
             </a>
           </li>
@@ -41,8 +41,10 @@
   </header>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import {defineComponent} from "vue";
+
+export default defineComponent({
   emits: ['scrollMeTo'],
   data() {
     return {
@@ -51,29 +53,34 @@ export default {
   },
   mounted() {
     document.addEventListener('scroll', this.scrollNav);
-
     const changeModeBtn = this.$refs.changeModeBtn;
     const app = document.getElementById('app');
     changeModeBtn.addEventListener('click', () => {
       const {mode} = this;
-      if (mode === 'dark') app.classList.add('dark-mode');
-      else app.classList.remove('dark-mode');
+      if (mode === 'dark') {
+        app.classList.add('dark-mode');
+      } else {
+        app.classList.remove('dark-mode');
+      }
     })
-
   },
   methods: {
-    changeMode() {
+    changeMode(): void {
       this.mode = this.mode === 'light' ? 'dark' : 'light';
     },
 
-    scrollNav() {
+    scrollNav(): void {
       const element = this.$refs.header;
       document.addEventListener('scroll', function () {
         let lastKnownScrollPosition = window.scrollY;
         if (lastKnownScrollPosition > 80) {
-          if (element) element.classList.add('scroll-view');
+          if (element) {
+            element.classList.add('scroll-view');
+          }
         } else {
-          if (element) element.classList.remove('scroll-view');
+          if (element) {
+            element.classList.remove('scroll-view');
+          }
         }
       });
     },
@@ -82,15 +89,16 @@ export default {
   },
 
   computed: {
-    iconMode() {
+    iconMode(): string {
       const {mode} = this;
       return mode === 'light' ? '<i class="fa fa-moon-o"></i>' : '<i class="fa fa-sun-o"></i>';
     }
   }
-}
+})
 </script>
 
 <style lang="scss">
+
 .header {
   position: fixed;
   top: 0;
@@ -122,6 +130,7 @@ export default {
 
     .nav__logo {
       color: $dark-colour;
+
       &:hover {
         color: #000;
       }
@@ -153,10 +162,11 @@ export default {
     color: $five-colour;
     background: $dark-colour;
 
-    .nav__logo{
+    .nav__logo {
       color: $five-colour;
 
     }
+
     a {
       color: $five-colour;
     }

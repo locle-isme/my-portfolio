@@ -10,8 +10,9 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import {defineComponent} from "vue";
+export default defineComponent({
   props: {
     item: {
       type: Object
@@ -21,7 +22,7 @@ export default {
   data() {
     return {}
   }
-}
+})
 </script>
 
 <style lang="scss">
@@ -85,10 +86,6 @@ $width-image: 300px;
   {
     background-color: #000000;
   }
-
-
-
-
 }
 
 

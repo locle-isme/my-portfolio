@@ -26,12 +26,12 @@
           <h2 class="my-name">{{ fullName }}</h2>
           <h4 class="major">({{ major }})</h4>
           <div class="contact-me">
-            <div class="email"><i class="fa fa-envelope-o" aria-hidden="true"></i>
+            <a :href="'mailto:' + email" class="email"><i class="fa fa-envelope-o" aria-hidden="true"></i>
               {{ email }}
-            </div>
-            <div class="phone"><i class="fa fa-phone" aria-hidden="true"></i>
-              {{ phone }}
-            </div>
+            </a>
+            <a :href="'tel:' + phone" class="phone"><i class="fa fa-phone" aria-hidden="true"></i>
+              {{ phoneText(phone) }}
+            </a>
           </div>
         </div>
         <div class="footer__social">
@@ -46,45 +46,47 @@
   </footer>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+
+import {defineComponent, PropType} from "vue";
+import Myself from "@/types/Myself";
+import PhoneText from "@/mixins/PhoneText";
+
+export default defineComponent({
   props: {
     me: {
-      type: Object,
+      type: Object as PropType<Myself>,
       required: true,
     }
   },
-  data() {
-    return {}
-  },
 
-  methods: {},
+  mixins: [PhoneText],
+
   computed: {
-    socials() {
+    socials(): any {
       const {socials} = this.me;
       return socials || [];
     },
 
-    phone() {
+    phone(): string {
       const {phone} = this.me;
-      return phone || "";
+      return phone || '';
     },
 
-    email() {
+    email(): string {
       const {email} = this.me;
       return email;
     },
-    fullName() {
+    fullName(): string {
       const {fullName} = this.me;
-      return fullName || "";
+      return fullName || '';
     },
-    major() {
+    major(): string {
       const {major} = this.me;
-      return major || "";
+      return major || '';
     },
-
-  }
-}
+  },
+})
 </script>
 
 <style lang="scss">
@@ -105,7 +107,6 @@ export default {
     max-width: $max-width-screen;
     background: $first-colour;
     display: flex;
-    color: #000;
     flex-direction: column;
 
     .container__info {
@@ -146,6 +147,8 @@ export default {
         }
 
         .contact-me {
+          display: flex;
+          flex-direction: column;
           font-size: 0.92em;
         }
       }

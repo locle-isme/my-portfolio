@@ -1,13 +1,15 @@
 <template>
   <div class="timeline__content">
     <div class="content__data">
-      <h4 class="timeline__title">{{item.title}}</h4>
-      <div class="timeline__sub-title">{{ item.description }}</div>
+      <h4 class="timeline__title">{{timeline.title}}</h4>
+      <div class="timeline__sub-title">{{ timeline.description }}</div>
       <div class="timeline__calender">
         <i class="fa fa-calendar-alt" aria-hidden="true"></i>
-        <span>{{item.date}}</span>
-        <a v-if="item.backlink" target="_blank" :href="item.backlink"><i class="fa fa-link" aria-hidden="true"></i>
-        </a></div>
+        <span>{{timeline.date}}</span>
+        <a v-if="timeline.backlink" target="_blank" :href="timeline.backlink">
+          <i class="fa fa-link" aria-hidden="true"></i>
+        </a>
+      </div>
     </div>
     <div class="content__line">
       <span class="line__rounder"></span>
@@ -17,15 +19,17 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import {defineComponent, PropType} from "vue";
+import Timeline from "@/types/Timeline";
+export default defineComponent({
   props:{
-    item: {
-      type: Object,
-      required: true
+    timeline: {
+      required: true,
+      type: Object as PropType<Timeline>,
     }
   },
-}
+})
 </script>
 
 <style lang="scss">

@@ -1,59 +1,7 @@
 <template>
   <section class="project" id="projects">
-    <h2 class="section__title">Projects</h2>
+    <h2 class="section__title">Pet Projects</h2>
     <small class="section__description">Some projects me participate</small>
-    <!--
-        <div class="slide-container">
-          <div class="slide-container__content">
-            <template v-for="(project,index) in projects" :key="'project' + index">
-              <div class="content-slide__detail" :class="classSlideDetail(index)">
-                <div class="img-thumbnail">
-                  <img :src="project.image" alt="">
-                </div>
-                <div class="description">
-                  <h4 class="title">{{ project.title }}</h4>
-                  <div class="short-description">
-                    {{ project.shortDescription }}
-                  </div>
-                  <button class="btn btn-sm btn-first" @click="changeShowModal(true)">Detail
-                    <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                  </button>
-                </div>
-              </div>
-            </template>
-            <span class="slide__previous-button" @click="changeSlide(-1)"><i class="fa fa-chevron-left"></i></span>
-            <span class="slide__next-button" @click="changeSlide(1)"><i class="fa fa-chevron-right"></i></span>
-          </div>
-          <div class="slide__dot-container">
-            <template v-for="(dot,index) in lengthProjects" :key="'dot' + dot">
-              <span class="dot" :class="classDot(index)" @click="changeCurrentSlide(index)"></span>
-            </template>
-          </div>
-        </div>
-    -->
-    <!--
-        <VSlide :items="projects">
-          <template #item="{item, index, classN}">
-            <div class="content-slide__detail" :class="classN">
-              <div class="img-thumbnail">
-                <img :src="item.image" alt="">
-              </div>
-              <div class="description">
-                <h4 class="title">{{ item.title }}</h4>
-                <div class="short-description">
-                  {{ item.shortDescription }}
-                </div>
-                <button class="btn btn-sm btn-first btn-detail" @click="changeShowModal(true, index)">Detail
-                  <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-                </button>
-              </div>
-            </div>
-          </template>
-          <template #dot="{classN, index, changeCurrentSlide}">
-            <span class="dot" :class="classN" @click="changeCurrentSlide(index)"></span>
-          </template>
-        </VSlide>
-        -->
     <div class="slide-container">
       <template v-for="(project,index) in projects" :key="'pp' + index">
         <div class="slide-container__content">
@@ -67,7 +15,6 @@
                 {{ project.shortDescription }}
               </div>
               <div class="btn-group">
-
                 <button class="btn btn-sm btn-first btn-detail" @click="changeShowModal(true, index)">Detail
                   <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
                 </button>
@@ -90,10 +37,16 @@
           <h3 class="title">{{ item.title }}</h3>
           <div class="source-demo">
             <div class="source">
-              <a class="btn btn-detail" :href="item.source" target="_blank">Source <i class="fa fa-2x fa-github"></i></a>
+              <a class="btn btn-detail" :href="item.source" target="_blank">
+                <span>Source </span>
+                <i class="fa fa-2x fa-github"></i>
+              </a>
             </div>
             <div class="demo">
-              <a class="btn btn-detail" :href="item.demo" target="_blank">Demo here<i class="fa fa-2x fa-link"></i></a>
+              <a class="btn btn-detail" :href="item.demo" target="_blank">
+                <span>Demo here </span>
+                <i class="fa fa-2x fa-link"></i>
+              </a>
             </div>
           </div>
           <template v-for="(detail, index) in item.details" :key="'detail-attr' + index">
@@ -107,15 +60,16 @@
     </VModal>
   </section>
 </template>
-<script>
-import VModal from "./VModal";
-//import VSlide from "./VSlide";
+<script lang="ts">
+import {defineComponent, PropType} from "vue";
+import VModal from './VModal.vue';
+import Project from "@/types/Project";
 
-export default {
+export default defineComponent({
   props: {
     projects: {
-      type: Array,
-      required: true
+      required: true,
+      type: Array as PropType<Project[]>,
     }
   },
 
@@ -127,48 +81,14 @@ export default {
   },
 
   methods: {
-
-    changeShowModal(status, index = 0) {
+    changeShowModal(status: boolean, index = 0): void {
       this.currentSlideIndex = index;
       this.showModal = status;
     },
-
-    /*changeSlide(n) {
-      const {currentSlideIndex, lengthProjects} = this;
-      let temp = n + currentSlideIndex;
-      if (temp < 0) this.currentSlideIndex = lengthProjects - 1;
-      if (temp > lengthProjects - 1) this.currentSlideIndex = 0;
-      if (temp >= 0 && temp <= lengthProjects - 1) this.currentSlideIndex = temp;
-    },
-
-    changeCurrentSlide(index) {
-      const {lengthProjects} = this;
-      if (index >= 0 && index <= lengthProjects - 1) this.currentSlideIndex = index;
-    },
-
-
-    classSlideDetail(index) {
-      const {currentSlideIndex} = this;
-      return {
-        active: index === currentSlideIndex
-      }
-    },
-
-    classDot(index) {
-      const {currentSlideIndex} = this;
-      return {
-        active: index === currentSlideIndex
-      }
-    }*/
   },
 
   computed: {
-    // lengthProjects() {
-    //   const {projects} = this;
-    //   return projects.length || 0;
-    // },
-
-    currentProject() {
+    currentProject(): object {
       const {currentSlideIndex} = this;
       return this.projects.find((item, index) => index === currentSlideIndex) || {};
     }
@@ -176,9 +96,8 @@ export default {
 
   components: {
     VModal,
-    //VSlide
   }
-}
+})
 </script>
 
 <style lang="scss">
@@ -298,7 +217,7 @@ $width-image: 230px;
   }
 
   .modal {
-    $width-image-modal: 300px;
+    $width-image-modal: 560px;
 
     .modal-body {
       display: flex;
@@ -354,6 +273,7 @@ $width-image: 230px;
           font-size: 0.85em;
           font-weight: $font-semi-bold;
           color: #fff0f5;
+
           .btn-detail {
             padding: 4px 10px;
             transition: 300ms;

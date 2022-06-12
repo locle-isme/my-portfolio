@@ -2,27 +2,36 @@
   <section class="timeline" id="timeline">
     <h2 class="section__title">Timeline</h2>
     <small class="section__description">My journey <i class="fa fa-heart text-heart"></i></small>
-    <template v-for="(item, index) in timeline" :key="'tl' + index">
-      <TimeLineContent :item="item"/>
+    <template v-for="(timeline, index) in timeLineList" :key="'tl' + index">
+      <TimeLineContent :timeline="timeline"/>
     </template>
   </section>
 </template>
 
-<script>
-import TimeLineContent from "./TimeLineContent";
+<script lang="ts">
+import {defineComponent, PropType} from "vue";
+import TimeLineContent from "./TimeLineContent.vue";
+import Timeline from "@/types/Timeline";
 
-export default {
+export default defineComponent({
   props: {
-    timeline: {
-      type: Array,
-      required: true
+    timelines: {
+      required: true,
+      type: Array as PropType<Timeline[]>,
+    }
+  },
+
+  computed: {
+    timeLineList(): any {
+      const {timelines} = this;
+      return timelines.reverse();
     }
   },
 
   components: {
     TimeLineContent
   }
-}
+})
 </script>
 
 <style lang="scss">

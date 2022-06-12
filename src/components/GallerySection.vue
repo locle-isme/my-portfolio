@@ -3,10 +3,10 @@
     <h2 class="section__title">Album Gallery</h2>
     <small class="section__description">My moments in life</small>
     <div class="gallery__container">
-      <template v-for="(image,index) in gallery.slice(0,6)" :key="'image' + index">
+      <template v-for="(galleryItem,index) in album.slice(0,6)" :key="'image' + index">
         <div class="image__container">
           <div class="img-detail">
-            <img :src="image.image" alt="">
+            <img :src="galleryItem.image" alt="">
             <div class="show-more">
               <button class="btn btn-show-more" @click="changeShowModal(true, index)">Show more</button>
             </div>
@@ -19,8 +19,6 @@
         <div class="image__container">
           <div class="image-detail">
             <img class="item" :src="item.image" alt="">
-            <!--            <img class="background" src="https://i.imgur.com/5LSZIMV.gif" alt="">-->
-            <!--            <img class="background" src="https://i.imgur.com/X1cxga4.gif" alt="">-->
             <div class="description">
               {{ item.description }}
             </div>
@@ -31,9 +29,9 @@
         <span class="slide__next-button" @click="changeCurrentImage(1)"><i class="fa fa-chevron-right"></i></span>
         <div class="slide-image-container">
           <div class="slide__frame" :style="styleSlideFrame">
-            <template v-for="(image,index) in gallery" :key="'windowSlide' + index">
+            <template v-for="(galleryItem,index) in album" :key="'windowSlide' + index">
               <div class="thumbnail-image" :class="classActiveSlideImage(index)" @click="changeShowModal(true, index)">
-                <img :src="image.image" alt="">
+                <img :src="galleryItem.image" alt="">
               </div>
             </template>
           </div>
@@ -43,76 +41,80 @@
   </section>
 </template>
 
-<script>
-import VModal from "./VModal";
+<script lang="ts">
+import {defineComponent, PropType} from "vue";
+import VModal from "./VModal.vue";
+import GalleryItem from "@/types/GalleryItem";
 
-export default {
+export default defineComponent({
   props: {
     gallery: {
-      type: Object,
+      type: Array as PropType<GalleryItem[]>,
       required: true
     }
   },
 
-
   data: () => {
     return {
-      currentImageIndex: 0,
-      showModal: false
+      currentImageIndex: 0 as number,
+      showModal: false as boolean
     }
   },
 
   methods: {
-    changeShowModal(status, index = 0) {
+    changeShowModal(status: boolean, index: number = 0): void {
       this.currentImageIndex = index;
       this.showModal = status;
     },
 
-
-    classActiveSlideImage(index) {
+    classActiveSlideImage(index: number): object {
       const {currentImageIndex} = this;
       return {
         active: currentImageIndex === index
       }
     },
 
-
-    changeCurrentImage(n) {
+    changeCurrentImage(n: number): void {
       const {lengthGallery} = this;
-      let temp = this.currentImageIndex;
-      temp += n;
-      if (temp > lengthGallery - 1) temp = 0;
-      if (temp < 0) temp = lengthGallery - 1;
-      this.currentImageIndex = temp;
+      let _currentImageIndex = this.currentImageIndex;
+      _currentImageIndex += n;
+      if (_currentImageIndex > lengthGallery - 1) {
+        _currentImageIndex = 0;
+      }
+      if (_currentImageIndex < 0) {
+        _currentImageIndex = lengthGallery - 1;
+      }
+      this.currentImageIndex = _currentImageIndex;
     }
   },
 
   computed: {
-    currentImage() {
+    currentImage(): object {
       const {currentImageIndex} = this;
       return this.gallery[currentImageIndex] || {};
     },
 
-    lengthGallery() {
+    lengthGallery(): number {
       return this.gallery.length || 0;
     },
 
-    styleSlideFrame() {
-      //
+    styleSlideFrame(): string {
       const {currentImageIndex} = this;
       let temp = currentImageIndex + 1;
       let transform = temp > 10 ? (temp - 10) * 10 : 0;
-      // return `transform: translateX(${transform} %)`;
       return `transform: translateX(-${transform}%); `;
     },
 
-
+    album(): any{
+      const {gallery} = this;
+      return gallery.reverse();
+    }
   },
 
   components: {
     VModal
   }
-}
+})
 </script>
 
 <style lang="scss">
@@ -152,6 +154,7 @@ $max-width-gallery: 968px;
         position: relative;
         transition: 300ms;
         overflow: hidden;
+
         img {
           object-position: 100% 10%;
           width: 100%;
@@ -163,35 +166,36 @@ $max-width-gallery: 968px;
           display: flex;
           width: 100%;
           height: 100%;
-          top: -100%;
-          left: 0;
-          transition: all .3s ease-out;
+          transition: all 0.3s ease-in-out;
+        }
+
+        .btn-show-more {
+          display: none;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: rgba(0, 0, 0, 0.48);
+          color: $third-colour;
+          font-weight: $font-semi-bold;
+          padding: 12px 15px;
+          border-radius: 0;
+          border: 3px #fff solid;
+          text-transform: uppercase;
+          z-index: $z-tooltip;
+          user-select: none;
         }
 
 
         &:hover {
-          transition: all .3s ease-out;
           .show-more {
             top: 0;
-            display: flex;
             position: absolute;
             background: rgba(0, 0, 0, .5);
+          }
 
-            .btn-show-more {
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-              background: rgba(0, 0, 0, 0.48);
-              color: $third-colour;
-              font-weight: $font-semi-bold;
-              padding: 12px 15px;
-              border-radius: 0;
-              border: 3px #fff solid;
-              text-transform: uppercase;
-              z-index: $z-tooltip;
-              user-select: none;
-            }
+          .btn-show-more {
+            display: block;
           }
         }
       }
@@ -213,7 +217,12 @@ $max-width-gallery: 968px;
           width: auto;
           height: auto;
           font-family: "Courier New", Courier, monospace;
-          background-image: url("https://i.imgur.com/5LSZIMV.gif"); //https://i.imgur.com/5LSZIMV.gif https://i.imgur.com/X1cxga4.gif
+          /*
+          background lo-fi chill
+          https://i.imgur.com/5LSZIMV.gif
+          https://i.imgur.com/X1cxga4.gif
+          */
+          background-image: url("https://i.imgur.com/5LSZIMV.gif");
           background-size: auto;
           background-position: center;
 
@@ -280,6 +289,8 @@ $max-width-gallery: 968px;
         overflow: hidden;
 
         .slide__frame {
+          display: flex;
+          justify-content: center;
           white-space: nowrap;
 
           .thumbnail-image {

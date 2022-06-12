@@ -1,7 +1,6 @@
 <template>
   <section class="skill" id="skills">
     <h2 class="section__title">SKILLS</h2>
-    <!--      <small class="section__description">Some projects me participate</small>-->
     <div class="skill__container">
       <div class="skill__background">
         <img src="@/assets/images/skills/bg.jpg" alt="">
@@ -10,10 +9,10 @@
         </button>
       </div>
       <div class="skill__box">
-        <div v-for="(skill,index) in skills" class="box__detail" :key="'sktt' + index">
-          <h3 class="box-title">{{ index }}</h3>
+        <div v-for="(skill) in skills" class="box__detail" :key="skill.type">
+          <h3 class="box-title">{{ skill.name }}</h3>
           <div class="detail">
-            <template v-for="(name,index) in skill" :key="'skname' + name + index">
+            <template v-for="(name,index) in skill.data" :key="skill.type + name + index">
               <div class="skill-name">{{ name }}</div>
             </template>
           </div>
@@ -22,14 +21,15 @@
     </div>
   </section>
 </template>
+<script lang="ts">
+import {defineComponent, PropType} from "vue";
+import Skill from "@/types/Skill";
 
-<script>
-
-export default {
+export default defineComponent({
   props: {
     skills: {
-      type: Object,
-      required: true
+      required: true,
+      type: Array as PropType<Skill[]>
     }
   },
 
@@ -47,7 +47,7 @@ export default {
     }
   },
   components: {}
-}
+})
 </script>
 
 <style lang="scss">

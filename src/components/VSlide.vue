@@ -18,10 +18,10 @@
     </div>
   </div>
 </template>
-<script>
+<script lang="ts">
 import _ from "lodash"
-
-export default {
+import {defineComponent} from "vue";
+export default defineComponent({
   props: {
     items: {
       type: Array,
@@ -32,11 +32,13 @@ export default {
       default: 1
     }
   },
+
   data() {
     return {
       currentSlideIndex: 0,
     }
   },
+
   methods: {
     changeSlide(n) {
       const {currentSlideIndex, lengthTransformList} = this;
@@ -74,19 +76,17 @@ export default {
   },
 
   computed: {
-    lengthTransformList() {
+    lengthTransformList(): number{
       const {transformList} = this;
       return transformList.length || 0;
     },
 
-    transformList() {
+    transformList(): any{
       const {limit, items} = this;
       return _.chunk(items, limit);
     }
-
-
   },
-}
+})
 </script>
 
 <style lang="scss">
@@ -108,39 +108,6 @@ $width-image: 230px;
     &.active {
       display: flex;
     }
-
-    /*
-        .content-slide__detail {
-          padding: 0 var(--p-2);
-          display: flex;
-
-          .img-thumbnail {
-            display: flex;
-            width: $width-image;
-            height: calc(#{$width-image} - 30px);
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-
-            img {
-              object-fit: cover;
-              width: 100%;
-              height: 100%;
-            }
-          }
-
-          .description {
-            width: calc(100% - #{$width-image});
-            padding-left: var(--p-1);
-
-            .short-description {
-              display: inline-block;
-              padding: 1rem 0;
-              font-size: $smaller-font-size;
-            }
-          }
-        }
-    */
 
     @mixin button_change_state {
       position: absolute;
