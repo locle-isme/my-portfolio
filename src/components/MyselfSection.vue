@@ -9,16 +9,15 @@
         <span class="active-status" :class="activeStatus"></span>
       </div>
       <div v-if="meSelfStyle === 2" class="me__box">
-        <div class="inline-box">
-          <h2 class="me__box-name">{{ me.fullName }} &nbsp;</h2>
-          <small class="me__box-major">({{ me.major }})</small>
+        <div class="me__box-info">
+          <p class="me__box-name">{{ me.fullName }}</p>
+          <p class="me__box-major">({{ me.major }})</p>
         </div>
         <h4><i class="fa fa-map-marker"></i> {{ me.location }}</h4>
-        <div class="inline-box">
+        <div class="contact-box">
           <small>
             <a :href="'tel:' + me.phone"><i class="fa fa-phone"></i> {{ phoneText(me.phone) }}</a>
           </small>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <small>
             <a :href="'mailto:' + me.email"><i class="fa fa-envelope"></i> {{ me.email }}</a>
           </small>
@@ -52,7 +51,7 @@ export default defineComponent({
     }
   },
 
-  mixins:[PhoneText],
+  mixins: [PhoneText],
 
   computed: {
     avatarImagePosition(): object {
@@ -74,7 +73,7 @@ export default defineComponent({
         marginTop: "0"
       }
       if (this.meSelfStyle === 2) {
-        styleAdditional.marginTop = "112px";
+        styleAdditional.marginTop = "100px";
       }
       return styleAdditional;
     },
@@ -126,17 +125,43 @@ export default defineComponent({
 
     .me__box {
       display: block;
-      transform: translateX(220px);
-      .inline-box {
+      margin-left: 220px;
+      @include sm {
+        margin-left: 110px;
+      }
+
+      .me__box-info, .contact-box {
         display: flex;
         align-items: center;
-        a{
+      }
+
+      .me__box-info {
+        column-gap: 0.5rem;
+      }
+
+      .contact-box {
+        margin-top: 0.22rem;
+        column-gap: 2rem;
+        @include sm {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        a {
           color: $dark-colour;
         }
       }
 
       .me__box-name {
-        display: inline-block;
+        font-weight: 600;
+        line-height: 1.2;
+        font-size: 1.5rem;
+      }
+
+      .me__box-major {
+        font-weight: 500;
+        line-height: 1.2;
+        font-size: 0.8rem;
       }
     }
 
@@ -172,11 +197,11 @@ export default defineComponent({
       .active-status {
         z-index: 9999;
         position: absolute;
-        bottom: 30px;
-        right: 10px;
+        bottom: 6%;
+        right: 6%;
         border: 4px #fff solid;
-        width: 24px;
-        height: 24px;
+        width: 18%;
+        height: 18%;
         border-radius: 50%;
 
         &.on {
@@ -209,8 +234,10 @@ export default defineComponent({
       white-space: pre-wrap;
       width: auto;
       font-size: $smaller-font-size;
-      padding-top: 0.4rem;
       text-align: center;
+      @include sm() {
+        text-align: justify;
+      }
     }
   }
 }

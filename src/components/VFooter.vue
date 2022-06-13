@@ -103,8 +103,21 @@ export default defineComponent({
     margin-top: 8rem;
     padding-top: 2rem;
     padding-bottom: 0.5rem;
-    width: 100%;
-    max-width: $max-width-screen;
+    width: $max-width-screen;
+    @include xl {
+      width: $max-width-screen;
+    }
+    @include lg {
+      width: auto;
+    }
+
+    @include md {
+      width: auto;
+    }
+
+    @include sm {
+      width: $sm-width-screen;
+    }
     background: $first-colour;
     display: flex;
     flex-direction: column;
@@ -113,7 +126,6 @@ export default defineComponent({
       width: 100%;
       display: flex;
       justify-content: space-around;
-      //align-items: center;
 
       @include sm {
         flex-direction: column;
@@ -121,7 +133,6 @@ export default defineComponent({
       }
       @mixin footer_item {
         display: flex;
-        //justify-content: center;
         flex: 1;
       }
 
