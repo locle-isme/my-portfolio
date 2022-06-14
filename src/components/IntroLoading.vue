@@ -24,9 +24,16 @@ export default defineComponent({
     const container = document.querySelector<HTMLElement>('.loading-block');
     const square = document.querySelector<HTMLElement>('.square-shape');
     const circles = document.querySelectorAll<HTMLElement>('.circle-shape');
-    const radius = 150;
-    const diameter = radius * 2;
-    const edge = 80; //size square
+    let radius = 150;
+    let diameter = radius * 2;
+    let edge = 80; //size square
+    let loopNumber = 22;
+    if (screen.width <= 450) {
+      radius = radius / 2;
+      diameter = diameter / 2;
+      edge = edge / 2;
+      loopNumber = loopNumber / 2;
+    }
     const text = this.circleText; //text circle
     if (container && square) {
       container.style.width = `${diameter}px`;
@@ -47,7 +54,7 @@ export default defineComponent({
         const {x, y} = positions[index];
         circle.style.left = `${x}px`;
         circle.style.top = `${y}px`;
-        const characters = Array.from({length: 22}, () => {
+        const characters = Array.from({length: loopNumber}, () => {
           return text
         }).join(" ").split('');
         characters.forEach((character, index) => {
